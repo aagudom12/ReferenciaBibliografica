@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/home"
-        android:title="Home"
+        android:title="Inicio"
         android:icon="@drawable/baseline_home_24"/>
 
     <item
         android:id="@+id/shorts"
-        android:title="Shorts"
-        android:icon="@drawable/baseline_whatshot_24"
+        android:title="Buscar"
+        android:icon="@drawable/buscar"
         />
 
     <item
@@ -18,11 +18,11 @@
 
     <item
         android:id="@+id/subscriptions"
-        android:title="Subscriptions"
-        android:icon="@drawable/baseline_unsubscribe_24" />
+        android:title="Biblioteca"
+        android:icon="@drawable/biblioteca" />
     <item
         android:id="@+id/library"
-        android:title="Library"
-        android:icon="@drawable/baseline_video_library_24" />
+        android:title="Vocabulario"
+        android:icon="@drawable/vocabulario" />
 
 </menu>

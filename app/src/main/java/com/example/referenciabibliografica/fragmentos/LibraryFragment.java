@@ -1,12 +1,21 @@
-package com.example.referenciabibliografica;
+package com.example.referenciabibliografica.fragmentos;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.referenciabibliografica.AdaptadorDiccionario;
+import com.example.referenciabibliografica.Palabra;
+import com.example.referenciabibliografica.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +33,9 @@ public class LibraryFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private RecyclerView recyclerView;
+    private AdaptadorDiccionario adapter;
+    private List<Palabra> wordList;
     public LibraryFragment() {
         // Required empty public constructor
     }
@@ -56,9 +68,22 @@ public class LibraryFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_library, container, false);
+
+        // Inicializar la lista de palabras
+        wordList = new ArrayList<>();
+        wordList.add(new Palabra("Anticonstitucionalmente", "De manera contraria a lo establecido en la constitución."));
+        wordList.add(new Palabra("Electroencefalografía", "Registro gráfico de la actividad eléctrica del cerebro."));
+        wordList.add(new Palabra("Desoxirribonucleico", "Ácido nucleico que contiene la información genética de los organismos."));
+        wordList.add(new Palabra("Otorrinolaringólogo", "Especialista en el estudio y tratamiento de las enfermedades del oído, nariz y garganta."));
+
+        // Configurar RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new AdaptadorDiccionario(wordList);
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 }

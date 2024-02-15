@@ -2,7 +2,6 @@ package com.example.referenciabibliografica;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,15 +20,28 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.referenciabibliografica.fragmentos.AboutusFragment;
+import com.example.referenciabibliografica.fragmentos.HomeFragment;
+import com.example.referenciabibliografica.fragmentos.LibraryFragment;
+import com.example.referenciabibliografica.fragmentos.SettingsFragment;
+import com.example.referenciabibliografica.fragmentos.ShareFragment;
+import com.example.referenciabibliografica.fragmentos.ShortsFragment;
+import com.example.referenciabibliografica.fragmentos.SubscriptionsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
+
+    NavigationView navigationView;
+
+    private static List<Elemento> libros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -58,18 +70,36 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             String title = item.getTitle().toString();
 
-            if ("Home".equals(title)) {
+            if ("Inicio".equals(title)) {
                 replaceFragment(new HomeFragment());
-            } else if ("Shorts".equals(title)) {
+            } else if ("Buscar".equals(title)) {
                 replaceFragment(new ShortsFragment());
-            } else if ("Subscriptions".equals(title)) {
+            } else if ("Biblioteca".equals(title)) {
                 replaceFragment(new SubscriptionsFragment());
-            } else if ("Library".equals(title)) {
+            } else if ("Vocabulario".equals(title)) {
                 replaceFragment(new LibraryFragment());
             }
 
-            drawerLayout.closeDrawer(GravityCompat.START); // Cerrar el Drawer después de hacer clic en un elemento
+            //drawerLayout.closeDrawer(GravityCompat.START); // Cerrar el Drawer después de hacer clic en un elemento
 
+
+            return true;
+        });
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            String title = item.getTitle().toString();
+
+            if ("HomeDrawer".equals(title)) {
+                replaceFragment(new HomeFragment());
+            } else if ("Settings".equals(title)) {
+                replaceFragment(new SettingsFragment());
+            } else if ("Share".equals(title)) {
+                replaceFragment(new ShareFragment());
+            } else if ("About Us".equals(title)) {
+                replaceFragment(new AboutusFragment());
+            }
+
+            //drawerLayout.closeDrawer(GravityCompat.START); // Cerrar el Drawer después de hacer clic en un elemento
 
             return true;
         });
@@ -97,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout videoLayout = dialog.findViewById(R.id.layoutVideo);
         LinearLayout shortsLayout = dialog.findViewById(R.id.layoutShorts);
-        LinearLayout liveLayout = dialog.findViewById(R.id.layoutLive);
         ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
         videoLayout.setOnClickListener(new View.OnClickListener() {
@@ -120,16 +149,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        liveLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this, "Go live is Clicked", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,5 +161,13 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    public static List<Elemento> getLibros() {
+        return libros;
+    }
+
+    public static void setLibros(List<Elemento> libros) {
+        MainActivity.libros = libros;
     }
 }
