@@ -1,6 +1,6 @@
 package com.example.referenciabibliografica;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -20,11 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.referenciabibliografica.fragmentos.AboutusFragment;
 import com.example.referenciabibliografica.fragmentos.HomeFragment;
 import com.example.referenciabibliografica.fragmentos.LibraryFragment;
-import com.example.referenciabibliografica.fragmentos.SettingsFragment;
-import com.example.referenciabibliografica.fragmentos.ShareFragment;
 import com.example.referenciabibliografica.fragmentos.ShortsFragment;
 import com.example.referenciabibliografica.fragmentos.SubscriptionsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -55,13 +52,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_nav,R.string.close_nav);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
 
         if(savedInstanceState==null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
+            navigationView.setCheckedItem(R.id.home);
         }
 
         replaceFragment(new HomeFragment());
@@ -82,24 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
             //drawerLayout.closeDrawer(GravityCompat.START); // Cerrar el Drawer después de hacer clic en un elemento
 
-
-            return true;
-        });
-
-        navigationView.setNavigationItemSelectedListener(item -> {
-            String title = item.getTitle().toString();
-
-            if ("HomeDrawer".equals(title)) {
-                replaceFragment(new HomeFragment());
-            } else if ("Settings".equals(title)) {
-                replaceFragment(new SettingsFragment());
-            } else if ("Share".equals(title)) {
-                replaceFragment(new ShareFragment());
-            } else if ("About Us".equals(title)) {
-                replaceFragment(new AboutusFragment());
-            }
-
-            //drawerLayout.closeDrawer(GravityCompat.START); // Cerrar el Drawer después de hacer clic en un elemento
 
             return true;
         });
