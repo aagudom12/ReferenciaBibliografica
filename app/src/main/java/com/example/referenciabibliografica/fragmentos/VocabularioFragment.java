@@ -19,10 +19,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LibraryFragment#newInstance} factory method to
+ * Use the {@link VocabularioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LibraryFragment extends Fragment {
+public class VocabularioFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +36,7 @@ public class LibraryFragment extends Fragment {
     private RecyclerView recyclerView;
     private AdaptadorDiccionario adapter;
     private List<Palabra> wordList;
-    public LibraryFragment() {
+    public VocabularioFragment() {
         // Required empty public constructor
     }
 
@@ -49,8 +49,8 @@ public class LibraryFragment extends Fragment {
      * @return A new instance of fragment LibraryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LibraryFragment newInstance(String param1, String param2) {
-        LibraryFragment fragment = new LibraryFragment();
+    public static VocabularioFragment newInstance(String param1, String param2) {
+        VocabularioFragment fragment = new VocabularioFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +69,7 @@ public class LibraryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_library, container, false);
+        View view = inflater.inflate(R.layout.fragment_vocabulario, container, false);
 
         // Inicializar la lista de palabras
         wordList = new ArrayList<>();

@@ -20,10 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.referenciabibliografica.fragmentos.HomeFragment;
-import com.example.referenciabibliografica.fragmentos.LibraryFragment;
-import com.example.referenciabibliografica.fragmentos.ShortsFragment;
-import com.example.referenciabibliografica.fragmentos.SubscriptionsFragment;
+import com.example.referenciabibliografica.fragmentos.InicioFragment;
+import com.example.referenciabibliografica.fragmentos.VocabularioFragment;
+import com.example.referenciabibliografica.fragmentos.BuscarFragment;
+import com.example.referenciabibliografica.fragmentos.BibliotecaFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -58,24 +58,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new InicioFragment()).commit();
             navigationView.setCheckedItem(R.id.home);
         }
 
-        replaceFragment(new HomeFragment());
+        replaceFragment(new InicioFragment());
 
         bottomNavigationView.setBackground(null);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             String title = item.getTitle().toString();
 
             if ("Inicio".equals(title)) {
-                replaceFragment(new HomeFragment());
+                replaceFragment(new InicioFragment());
             } else if ("Buscar".equals(title)) {
-                replaceFragment(new ShortsFragment());
+                replaceFragment(new BuscarFragment());
             } else if ("Biblioteca".equals(title)) {
-                replaceFragment(new SubscriptionsFragment());
+                replaceFragment(new BibliotecaFragment());
             } else if ("Vocabulario".equals(title)) {
-                replaceFragment(new LibraryFragment());
+                replaceFragment(new VocabularioFragment());
             }
 
             //drawerLayout.closeDrawer(GravityCompat.START); // Cerrar el Drawer después de hacer clic en un elemento

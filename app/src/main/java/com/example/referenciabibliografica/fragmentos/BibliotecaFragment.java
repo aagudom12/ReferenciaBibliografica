@@ -20,10 +20,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SubscriptionsFragment#newInstance} factory method to
+ * Use the {@link BibliotecaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SubscriptionsFragment extends Fragment {
+public class BibliotecaFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +36,7 @@ public class SubscriptionsFragment extends Fragment {
 
     View view;
 
-    public SubscriptionsFragment() {
+    public BibliotecaFragment() {
         // Required empty public constructor
     }
 
@@ -49,8 +49,8 @@ public class SubscriptionsFragment extends Fragment {
      * @return A new instance of fragment SubscriptionsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SubscriptionsFragment newInstance(String param1, String param2) {
-        SubscriptionsFragment fragment = new SubscriptionsFragment();
+    public static BibliotecaFragment newInstance(String param1, String param2) {
+        BibliotecaFragment fragment = new BibliotecaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,7 +71,7 @@ public class SubscriptionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_subscriptions, container, false);
+        view = inflater.inflate(R.layout.fragment_biblioteca, container, false);
 
         // Recuperar información de favoritos de SharedPreferences
         List<Elemento> favoritos = obtenerFavoritos();

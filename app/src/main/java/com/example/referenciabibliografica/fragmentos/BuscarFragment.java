@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.referenciabibliografica.Adaptador;
@@ -24,10 +23,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ShortsFragment#newInstance} factory method to
+ * Use the {@link BuscarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShortsFragment extends Fragment {
+public class BuscarFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +45,7 @@ public class ShortsFragment extends Fragment {
 
 
 
-    public ShortsFragment() {
+    public BuscarFragment() {
         // Required empty public constructor
     }
 
@@ -59,8 +58,8 @@ public class ShortsFragment extends Fragment {
      * @return A new instance of fragment ShortsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ShortsFragment newInstance(String param1, String param2) {
-        ShortsFragment fragment = new ShortsFragment();
+    public static BuscarFragment newInstance(String param1, String param2) {
+        BuscarFragment fragment = new BuscarFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,7 +80,7 @@ public class ShortsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_shorts, container, false);
+        view = inflater.inflate(R.layout.fragment_buscar, container, false);
 
         // Obtener la lista de libros de la MainActivity
         listaLibros = MainActivity.getLibros();

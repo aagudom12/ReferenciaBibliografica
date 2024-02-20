@@ -21,10 +21,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link InicioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements AdapterView.OnItemLongClickListener{
+public class InicioFragment extends Fragment implements AdapterView.OnItemLongClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemLongClic
     View view;
     List<Elemento> elementos;
 
-    public HomeFragment() {
+    public InicioFragment() {
         // Required empty public constructor
     }
 
@@ -51,8 +51,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemLongClic
      * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static InicioFragment newInstance(String param1, String param2) {
+        InicioFragment fragment = new InicioFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemLongClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_inicio, container, false);
         iniciarLista();
         return view;
     }
