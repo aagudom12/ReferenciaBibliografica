@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.referenciabibliografica.Adaptador;
 import com.example.referenciabibliografica.Elemento;
@@ -24,7 +26,7 @@ import java.util.List;
  * Use the {@link InicioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InicioFragment extends Fragment implements AdapterView.OnItemLongClickListener{
+public class InicioFragment extends Fragment implements AdapterView.OnItemLongClickListener, AdapterView.OnItemSelectedListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +76,14 @@ public class InicioFragment extends Fragment implements AdapterView.OnItemLongCl
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_inicio, container, false);
+
+        Spinner spinner = view.findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
+                R.array.opciones_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
         iniciarLista();
         return view;
     }
@@ -100,8 +110,47 @@ public class InicioFragment extends Fragment implements AdapterView.OnItemLongCl
         recyclerView.setAdapter(listaAdaptador);
     }
 
+    public void mostrarNoticias(){
+        elementos = new ArrayList<>();
+        elementos.add(new Elemento("#775447", "Nuevo tratado comercial entra en vigor", false));
+        elementos.add(new Elemento("#687d8b", "Científicos descubren posible cura para enfermedad", false));
+        elementos.add(new Elemento("#83a9f4", "Protestas estudiantiles exigen reforma educativa", false));
+        elementos.add(new Elemento("#f44336", "Empresa lanza producto revolucionario", false));
+        elementos.add(new Elemento("#009688", "Terremoto sacude región costera", false));
+        elementos.add(new Elemento("#ff9800", "Acuerdo climático alcanza un hito importante", false));
+        elementos.add(new Elemento("#4caf50", "Artista famoso dona a obras benéficas", false));
+        elementos.add(new Elemento("#673ab7", "La tensión aumenta en la disputa territorial", false));
+        elementos.add(new Elemento("#e91e63", "Estudio revela efectos negativos de redes sociales", false));
+        elementos.add(new Elemento("#ffcc00", "Inflación causa preocupación en la economía global", false));
+
+        MainActivity.setLibros(elementos);
+
+        Adaptador listaAdaptador = new Adaptador(elementos,requireContext());
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setAdapter(listaAdaptador);
+    }
+
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         return false;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String opcionSeleccionada = parent.getItemAtPosition(position).toString();
+        if (opcionSeleccionada.equals("Libros")) {
+            // Mostrar lista de libros
+            iniciarLista();
+        } else if (opcionSeleccionada.equals("Noticias")) {
+            // Mostrar lista de noticias
+            mostrarNoticias(); // Método que debes implementar para mostrar noticias en el RecyclerView
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

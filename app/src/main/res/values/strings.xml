@@ -4,4 +4,9 @@
     <string name="close_nav">Cerrar Navigation Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="opciones_array">
+        <item>Libros</item>
+        <item>Noticias</item>
+    </string-array>
 </resources>
