@@ -3,6 +3,7 @@ package com.example.referenciabibliografica.fragmentos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
@@ -88,6 +89,11 @@ public class BuscarFragment extends Fragment {
         editText = view.findViewById(R.id.search_edit_text);
         // Obtén una referencia al RecyclerView desde tu layout
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+
+        // Crea una instancia de un LinearLayoutManager para mostrar los elementos en una lista vertical
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        recyclerView.setLayoutManager(layoutManager);
+
         // Crea una instancia de tu adaptador Adaptador
         Adaptador adaptador = new Adaptador(listaLibros, requireActivity());
         // Establece el adaptador en el RecyclerView
@@ -109,7 +115,7 @@ public class BuscarFragment extends Fragment {
                     }
                 }
 
-                adaptador.filterList(searchText);
+                adaptador.filterList(filteredList);
             }
 
             @Override

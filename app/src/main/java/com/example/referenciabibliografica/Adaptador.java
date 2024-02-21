@@ -83,19 +83,10 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder>{
         });
     }
 
-    public void filterList(String text) {
-        datosFiltrados.clear();
-        if (text.isEmpty()) {
-            datosFiltrados.addAll(datos);
-        } else {
-            text = text.toLowerCase();
-            for (Elemento item : datos) {
-                if (item.getTitulo().toLowerCase().contains(text)) {
-                    datosFiltrados.add(item);
-                }
-            }
-        }
-        notifyDataSetChanged();
+    public void filterList(ArrayList<Elemento> filteredList) {
+        datosFiltrados = filteredList;
+        notifyDataSetChanged(); // Notificar al adaptador sobre el cambio en los datos filtrados
+
     }
 
     //actualiza el estado visual del botón de favoritos
@@ -107,11 +98,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder>{
         } else {
             holder.favButton.setText("Agregar a favoritos");
         }
-    }
-
-    public void setItems(List<Elemento> items){
-        datos = items;
-        filterList("");
     }
 
     //representa una vista individual dentro del RecyclerView
